@@ -1,0 +1,90 @@
+<?php require VIEWS_FOLDER . '/includes/header.phtml';?>
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Cadastrar Produto</h1>
+			<a href="<?=HOME . 'admin/product';?>" class="btn btn-warning">
+				Voltar
+			</a>
+			<hr>
+		</div>
+	</div>
+
+	<div class="row">
+		<?php require VIEWS_FOLDER . '/includes/message.phtml'; ?>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-12">
+			<form action="<?=HOME . 'admin/product/edit';?>" method="POST"  enctype="multipart/form-data">
+
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Nome</label>
+			    <input type="text" class="form-control" placeholder="Nome" name="name" value="<?=$this->product['name'];?>" >
+			  </div>
+
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Slug (Ex.: product-um)</label>
+			    <input type="text" class="form-control" placeholder="Slug" name="slug" value="<?=$this->product['slug'];?>" >
+			  </div>
+
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Preço</label>
+			    <input type="text" class="form-control" placeholder="Preço" name="price" value="<?=$this->product['price'];?>" >
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">Quantidade</label>
+			    <input type="text" class="form-control" placeholder="Quantidade" name="amount" value="<?=$this->product['amount'];?>" >
+			  </div>
+			 
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">Descrição</label>
+			    <textarea class="form-control" placeholder="Descrição" name="description"><?=$this->product['description'];?></textarea>
+			  </div>
+
+
+ 			<div class="form-group">
+			  	<label>Categoria deste Produto</label>
+			  	<select name="category_id">
+			  		<?php foreach($this->categories as $category): ?>
+			  			<option value="<?=$category['id'];?>" 
+			  				<?php if($category['id'] == $this->product['category_id']): ?> selected <?php endif;?>
+			  			>
+			  			<?=$category['name']?>
+			  			</option>
+			  		<?php endforeach;?>
+			  	</select>
+			  </div>
+
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">Imagens do Produto</label>
+			    <input type="file" name="images[]" multiple>
+			  </div>
+
+
+			  <input type="hidden" value="<?=$this->product['id']?>" name="id">	
+			  <button type="submit" class="btn btn-success">Atualizar</button>
+			</form>
+		</div>
+
+		<?php if(isset($this->product['images']) && count($this->product['images']) > 0): ?>
+			<div class="col-md-12">
+
+			<h1>Fotos</h1>
+			<hr>
+
+			<?php foreach($this->product['images'] as $i): ?>
+					<div class="col-md-4">
+						<img src="<?=HOME .'/assets/uploads/products/' . $i['image'];?>" alt="" width="300px">
+						<div class="row text-center">
+							<a href="<?=HOME;?>admin/product/deleteimage/<?=$this->product['id'];?>/<?=$i['id'];?>" class="btn btn-sm btn-danger">
+								<i class="fa fa-trash"></i>
+							</a>
+						</div>
+					</div>
+		    <?php endforeach; ?>
+			</div>
+	    <?php endif; ?>
+	</div>
+<?php require VIEWS_FOLDER . '/includes/footer.phtml';?>
