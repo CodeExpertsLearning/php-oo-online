@@ -1,0 +1,58 @@
+<?php require VIEWS_FOLDER . 'site/includes/header.phtml';?>
+	<div class="jumbotron"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Obrigado</h1>
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div>
+					<p>Obrigado por sua compra</p>
+				</div>
+                <div class="col-md-12">
+	                <?php if($this->dataPurchase->getPaymentMethod()->getType()->getValue() == 2):?>
+                        <p>
+                            <a href="<?=$this->dataPurchase->getPaymentLink();?>" class="btn btn-success btn-lg" target="_blank">
+                                Gerar Boleto
+                            </a>
+                        </p>
+
+	                <?php endif;?>
+                    <p><strong>status: </strong> <?=$this->dataPurchase->getStatus()->getValue();?></p>
+
+                    <p><strong>grossAmount: </strong> <?=$this->dataPurchase->getGrossAmount();?></p>
+                    <p><strong>discountAmount: </strong> <?=$this->dataPurchase->getDiscountAmount();?></p>
+                    <p><strong>feeAmount: </strong> <?=$this->dataPurchase->getFeeAmount();?></p>
+                    <p><strong>netAmount: </strong> <?=$this->dataPurchase->getNetAmount();?></p>
+                    <p><strong>extraAmount: </strong> <?=$this->dataPurchase->getExtraAmount();?></p>
+                    <p><strong>installmentCount: </strong> <?=$this->dataPurchase->getInstallmentCount();?></p>
+                    <p><strong>itemCount: </strong> <?=$this->dataPurchase->getItemCount();?></p>
+                    <p><strong>Items: </strong></p>
+	                <?php foreach ($this->dataPurchase->getItems() as $item): ?>
+                        <p>
+                            <strong>id: </strong>  <?=$item->getId();?></br>
+                            <strong>description: </strong>  <?=$item->getDescription();?></br>
+                            <strong>quantity: </strong>  <?=$item->getQuantity();?></br>
+                            <strong>amount: </strong>  <?=$item->getAmount();?>
+                        </p>
+	                <?php endforeach;?>
+                    <p><strong>senderName: </strong> <?=$this->dataPurchase->getSender()->getName();?></p>
+                    <p><strong>senderEmail: </strong> <?=$this->dataPurchase->getSender()->getEmail();?></p>
+                    <p><strong>senderPhone: </strong> <?=$this->dataPurchase->getSender()->getPhone()->getAreaCode();?>
+		                <?=$this->dataPurchase->getSender()->getPhone()->getNumber();?></p>
+                    <p><strong>Shipping: </strong></p>
+                    <p><strong>street: </strong> <?=$this->dataPurchase->getShipping()->getAddress()->getStreet();?></p>
+                    <p><strong>number: </strong> <?=$this->dataPurchase->getShipping()->getAddress()->getNumber();?> </p>
+                    <p><strong>complement: </strong> <?=$this->dataPurchase->getShipping()->getAddress()->getComplement();?> </p>
+                    <p><strong>district: </strong> <?=$this->dataPurchase->getShipping()->getAddress()->getDistrict();?> </p>
+                    <p><strong>postalCode: </strong> <?=$this->dataPurchase->getShipping()->getAddress()->getPostalCode();?> </p>
+                    <p><strong>city: </strong> <?=$this->dataPurchase->getShipping()->getAddress()->getCity();?> </p>
+                    <p><strong>state: </strong> <?=$this->dataPurchase->getShipping()->getAddress()->getState();?> </p>
+                    <p><strong>country: </strong> <?=$this->dataPurchase->getShipping()->getAddress()->getCountry();?> </p>
+                </div>
+			</div>
+		</div>
+<?php require VIEWS_FOLDER . 'site/includes/footer.phtml';?>

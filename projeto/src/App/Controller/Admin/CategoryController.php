@@ -5,13 +5,21 @@ use CodeExperts\MVC\BaseController;
 use CodeExperts\MVC\View;
 use CodeExperts\App\Entity\Category;
 use CodeExperts\DB\Connection;
+use CodeExperts\Traits\AuthVerify;
 
 class CategoryController extends BaseController
 {
+    use AuthVerify;
+
     private $category;
 
     public function __construct()
     {
+        if(!$this->isAuthenticated()) {
+            $this->addFlash('warning', 'Acesso não permitido!');
+            return $this->redirect('auth/login');
+        }
+
         $this->category = new Category(Connection::getInstance($this->getConfig('database')));
     }
 

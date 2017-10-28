@@ -22,6 +22,11 @@ if(class_exists($controller)){
         $params  = isset($url[2]) ? $url[2] : '';
     }
 
+    if(!method_exists($controller, $actions)) {
+	    $params = $actions;
+    	$actions = 'index';
+    }
+
     $response = call_user_func_array([new $controller, $actions], [$params]);
 
     print $response;

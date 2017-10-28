@@ -5,13 +5,21 @@ use CodeExperts\MVC\BaseController;
 use CodeExperts\MVC\View;
 use CodeExperts\App\Entity\User;
 use CodeExperts\DB\Connection;
+use CodeExperts\Traits\AuthVerify;
 
 class UserController extends BaseController
 {
+    use AuthVerify;
+
     private $user;
 
     public function __construct()
     {
+        if(!$this->isAuthenticated()) {
+            $this->addFlash('warning', 'Acesso não permitido!');
+            return $this->redirect('auth/login');
+        }
+
         $this->user = new User(Connection::getInstance($this->getConfig('database')));
     }
 
@@ -63,9 +71,18 @@ class UserController extends BaseController
 
             $user = $this->user;
 
-            $user->id          = (int) $data['id'];
-            $user->name        = $data['name'];
-            $user->description = $data['description'];
+
+
+            $user->id    = (int) $data['id'];
+	        $user->name  = $data['name'];
+	        $user->email = $data['email'];
+
+	        if($data['password']) {
+		        $password = new \CodeExperts\Tools\PasswordHash();
+		        $password = $password->setPassword($data['password'])->generate();
+
+		        $user->password = $password;
+	        }
 
             if(!$user->update()) {
                 $this->addFlash('error', 'Erro durante o processo de atualização de um usuário!');

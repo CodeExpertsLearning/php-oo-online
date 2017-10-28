@@ -7,14 +7,22 @@ use CodeExperts\App\Entity\Product;
 use CodeExperts\App\Entity\ProductImage;
 use CodeExperts\App\Entity\Category;
 use CodeExperts\DB\Connection;
+use CodeExperts\Traits\AuthVerify;
 use CodeExperts\Upload\ProductUpload;
 
 class ProductController extends BaseController
 {
+    use AuthVerify;
+
     private $product;
 
     public function __construct()
     {
+        if(!$this->isAuthenticated()) {
+            $this->addFlash('warning', 'Acesso não permitido!');
+            return $this->redirect('auth/login');
+        }
+
         $this->product = new Product(Connection::getInstance($this->getConfig('database')));
     }
 
@@ -148,6 +156,34 @@ class ProductController extends BaseController
 
         $this->addFlash('success', 'Produto removido com sucesso!');
         return $this->redirect('admin/product');
-
     }
+
+	public function deleteimage()
+	{
+		$image_id = $_GET['image_id']?? $_GET['image_id'];
+		$product_id = $_GET['product_id']?? $_GET['product_id'];
+
+		if(!$image_id
+		|| $product_id) {
+			$this->addFlash('warning', 'ID Inválido!');
+			return $this->redirect('admin/product');
+		}
+
+		$data = [
+			'image_id' => $image_id,
+			'product_id' => $product_id
+		];
+
+		$productImages = new ProductImage(Connection::getInstance($this->getConfig('database')));
+
+		if(!$productImages->deleteImage($data)) {
+			$this->addFlash('error', 'Erro ao tentar remover um produto!');
+			return $this->redirect('admin/product');
+		}
+
+		$this->addFlash('success', 'Produto removido com sucesso!');
+		return $this->redirect('admin/product');
+	}
+
+
 }

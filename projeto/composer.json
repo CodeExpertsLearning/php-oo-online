@@ -3,5 +3,9 @@
     "psr-4": {
       "CodeExperts\\" : "src/"
     }
+  },
+  "require": {
+    "phpmailer/phpmailer": "^5.2",
+    "pagseguro/php": "2.7.1"
   }
 }

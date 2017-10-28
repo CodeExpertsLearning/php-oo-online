@@ -38,7 +38,7 @@ abstract class Entity
                       ' . $this->table . '('.
             $fields
             . ', created_at, updated_at) 
-                VALUES('. $bind .', "now()", "now")';
+                VALUES('. $bind .', now(), now())';
 
         $insert = $this->conn->prepare($sql);
 

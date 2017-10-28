@@ -1,0 +1,86 @@
+<?php require VIEWS_FOLDER . 'site/includes/header.phtml';?>
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Produto</h1>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<?php require VIEWS_FOLDER . 'includes/message.phtml';?>
+	</div>
+	<div class="col-md-12">
+	<!-- Example row of columns -->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-md-12">
+				<?php if($this->products): ?>
+					<table class="table table-hover">
+						<thead>
+						<tr>
+							<th>Produto</th>
+							<th> </th>
+							<th> </th>
+							<th class="text-center">Preço</th>
+
+						</tr>
+						</thead>
+						<tbody>
+						<?php foreach($this->products['products'] as $key => $product):?>
+							<tr>
+								<td>
+									<div class="media" style="width: 350px;">
+										<a class="thumbnail pull-left" href="<?=HOME;?>product/<?=$product['id'];?>">
+											<?php if(isset($product['images']) && $product['images']): ?>
+												<img src="<?=HOME .'assets/uploads/thumbs/' . $product['images'][0]['image'];?>" alt="" class="img-responsive">
+											<?php else: ?>
+												<img src="http://placehold.it/350X150" alt=""  class="img-responsive">
+											<?php endif; ?>
+										</a>
+									</div>
+                                </td>
+								<td><div class="media-body">
+                                        <h4 class="media-heading"><a href="<?=HOME;?>product/<?=$product['id'];?>"><?=$product['name'];?></a></h4>
+                                        <p><?=$product['description'];?></p>
+                                    </div>
+                                </td>
+								<td></td>
+								<td class="col-sm-2 col-md-2 text-center"><strong>R$ <?=number_format($product['price'], 2, ',', '.');?></strong></td>
+								<td class="col-sm-2 col-md-2">
+									<a href="/cart/remove/<?=$product['id'];?>" type="button" class="btn btn-danger">
+										<span class="glyphicon glyphicon-remove-circle"></span>
+									</a></td>
+							</tr>
+						<?php endforeach;?>
+
+						<tr>
+							<td>   </td>
+							<td>   </td>
+							<td>   </td>
+							<td><h3>Total</h3></td>
+							<td class="text-right"><h3><strong>R$ <?=number_format($this->products['total'], 2, ',', '.');?></strong></h3></td>
+						</tr>
+						<tr>
+							<td>   </td>
+							<td>   </td>
+							<td>   </td>
+							<td>
+								<a href="/" class="btn btn-default">
+									<span class="glyphicon glyphicon-shopping-cart"></span> Continuar Comprando
+								</a></td>
+							<td>
+								<a  href="<?=HOME;?>signup"  class="btn btn-success">
+									Concluir Compra <span class="glyphicon glyphicon-play"></span>
+								</a></td>
+						</tr>
+						</tbody>
+					</table>
+				<?php else: ?>
+					<div class="alert alert-warning">
+						Nenhum produto no carrinho
+						<a href="<?=HOME;?>" class="pull-right">Voltar</a>
+					</div>
+				<?php endif; ?>
+			</div>
+		</div>
+	</div>
+<?php require VIEWS_FOLDER . 'site/includes/footer.phtml';?>

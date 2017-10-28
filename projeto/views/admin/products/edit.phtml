@@ -76,7 +76,7 @@
 
 			<?php foreach($this->product['images'] as $i): ?>
 					<div class="col-md-4">
-						<img src="<?=HOME .'/assets/uploads/products/' . $i['image'];?>" alt="" width="300px">
+						<img src="<?=HOME .'/assets/uploads/thumbs/' . $i['image'];?>" alt="" width="300px">
 						<div class="row text-center">
 							<a href="<?=HOME;?>admin/product/deleteimage/<?=$this->product['id'];?>/<?=$i['id'];?>" class="btn btn-sm btn-danger">
 								<i class="fa fa-trash"></i>

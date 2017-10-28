@@ -7,6 +7,6 @@ class ProductUpload
 {
     use Upload;
 
-    protected $folder = UPLOAD_FOLDER . "products/";
+    protected $folder = UPLOAD_FOLDER . "thumbs/";
 
 }

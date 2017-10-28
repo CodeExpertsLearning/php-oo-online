@@ -33,24 +33,24 @@
 
 <div class="container content">
 
-        <div class="row">
-          <?php require VIEWS . '/includes/message.phtml'; ?>
-        </div>
-        
-       <div class="col-md-4 col-md-offset-4">
-           <form action="<?=HOME;?>/auth/relembrar-senha" method="post">
-               <div class="form-group">
-                   <label for="exampleInputEmail1">Email</label>
-                   <input type="email" class="form-control" name="email" placeholder="Escreva seu e-mail para enviarmos o lembrete">
-               </div>
-               <div class="row">
-                  <div class="col-md-12">
-                      <a href="<?=HOME;?>/auth/login">Voltar ao login</a>
-                  </div>
-               </div>
-               <button type="submit" class="btn btn-default btn-success pull-right">Relembrar</button>
-           </form>
-       </div>
+    <div class="row">
+        <?php require VIEWS_FOLDER . '/includes/message.phtml'; ?>
     </div>
+
+    <div class="col-md-4 col-md-offset-4">
+        <form action="<?=HOME;?>auth/rememberpassword" method="post">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" name="email" placeholder="Escreva seu e-mail para enviarmos o lembrete">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="<?=HOME;?>auth/login">Voltar ao login</a>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default btn-success pull-right">Relembrar</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

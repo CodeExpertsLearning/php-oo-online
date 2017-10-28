@@ -1,0 +1,43 @@
+<?php require VIEWS_FOLDER . 'site/includes/header.phtml';?>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+	<div class="container">
+		<h1>Produtos Variados</h1>
+		<p>Encontre aqui tudo o que você precisa para viver!</p>
+	</div>
+</div>
+
+<div class="container">
+	<!-- Example row of columns -->
+	<div class="row">
+        <div class="col-md-12">
+            <div class="col-md-12">
+		        <?php require VIEWS_FOLDER . 'includes/message.phtml';?>
+            </div>
+            <div class="col-md-4">
+                <?php if(isset($this->product['images']) && $this->product['images']): ?>
+                    <div class="row" style="margin-bottom: 12px;">
+                        <img src="<?=HOME .'assets/uploads/thumbs/' . $this->product['images'][0]['image'];?>" alt="" class="img-responsive">
+                    </div>
+                    <div class="row">
+		                <?php foreach($this->product['images'] as $i) : ?>
+                            <div class="col-md-4">
+                                <img src="<?=HOME .'assets/uploads/thumbs/' . $i['image'];?>" alt=""  class="img-responsive">
+                            </div>
+		                <?php endforeach;?>
+                    </div>
+                <?php else: ?>
+                    <img src="http://placehold.it/350X150" alt=""  class="img-responsive">
+                <?php endif;?>
+            </div>
+            <div class="col-md-8">
+                <h2><?=$this->product['name'];?></h2>
+                <p><?=$this->product['description'];?></p>
+                <h3>R$ <?=number_format($this->product['price'], 2, ',', '.');?></h3>
+            </div>
+            <div class="col-md-8">
+                <a href="<?=HOME;?>cart/add/<?=$this->product['id'];?>" class="btn btn-lg btn-success">Comprar</a>
+            </div>
+        </div>
+	</div>
+<?php require VIEWS_FOLDER . 'site/includes/footer.phtml';?>

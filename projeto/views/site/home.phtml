@@ -1,0 +1,29 @@
+<?php require VIEWS_FOLDER . 'site/includes/header.phtml';?>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+	<div class="container">
+		<h1>Produtos Variados</h1>
+		<p>Encontre aqui tudo o que você precisa para viver!</p>
+	</div>
+</div>
+
+<div class="container">
+	<!-- Example row of columns -->
+	<div class="row">
+        <div class="col-md-12">
+			<?php require VIEWS_FOLDER . 'includes/message.phtml';?>
+        </div>
+		<?php foreach($this->products as $product):?>
+		<div class="col-md-4">
+			<?php if(isset($product['image']) && $product['image']): ?>
+				<img src="<?=HOME .'assets/uploads/thumbs/' . $product['image'];?>" alt="" class="img-responsive">
+			<?php else: ?>
+				<img src="http://placehold.it/350X150" alt=""  class="img-responsive">
+			<?php endif; ?>
+			<h2><?=$product['name'];?></h2>
+			<p><?=$product['description'];?></p>
+			<p><a class="btn btn-default" href="<?=HOME;?>product/<?=$product['id'];?>" role="button">Ver Produto</a></p>
+		</div>
+		<?php endforeach;?>
+	</div>
+<?php require VIEWS_FOLDER . 'site/includes/footer.phtml';?>
