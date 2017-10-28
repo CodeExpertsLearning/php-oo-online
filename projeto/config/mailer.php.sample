@@ -1,0 +1,10 @@
+<?php
+return array(
+    'SMTP_HOST' => '',
+    'SMTP_USER' => '',
+    'SMTP_PASSWORD' => '',
+    'SMTP_ENCRYPTION' => '',
+    'SMTP_PORT' => '',
+    'SMTP_FROM' => '',
+    'SMTP_USER_FROM' => ''
+);
