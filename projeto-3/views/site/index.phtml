@@ -2,9 +2,9 @@
 <div class="container">
 
     <div class="jumbotron">
-        <h1>Bem Vindo ao Projeto Um</h1>
+        <h1>Gerenciador de Gastos Pessoais</h1>
         <p>
-            Projeto criado no curso PHP Orientado a Objetos da Code Experts Learning.
+            Projeto 3 criado no curso PHP Orientado a Objetos da Code Experts Learning.
         </p>
         <p>
             <a class="btn btn-lg btn-primary" href="http://bit.ly/ce-learn" role="button">Saiba mais &raquo;</a>
@@ -12,14 +12,7 @@
     </div>
 
     <div class="col-md-12">
-        <?php foreach($this->products as $product):?>
-        <div class="col-md-4">
-            <img src="http://via.placeholder.com/350x150?text=<?=$product['name'];?>" alt="" class="img-responsive">
-            <h2><a href="<?=HOME;?>/product/<?=$product['id'];?>"><?=$product['name'];?></a></h2>
-            <p><?=$product['description'];?></p>
-            <p>R$ <?=number_format($product['price'], 2, ',', '.');?></p>
-        </div>
-        <?php endforeach;?>
+
     </div>
 
 </div>
