@@ -1,8 +1,8 @@
 <?php
 return array(
     'host' => 'localhost',
-    'user' => 'dev',
-    'password' => 'dev123',
+    'user' => 'root',
+    'password' => '',
     'charset'  => 'UTF8',
-    'database' => 'php_oo',
+    'database' => 'formacao_admin',
 );
