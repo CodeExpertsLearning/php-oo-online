@@ -28,7 +28,16 @@
                 <li>
                     <a href="<?=HOME;?>/myexpenses">Minhas Despesas</a>
                 </li>
-			</ul>
+				<?php if(\Code\Session\Session::has('user')): ?>
+                    <li>
+                        <a href="<?=HOME;?>/auth/logout">Deslogar</a>
+                    </li>
+                <?php else: ?>
+                    <li>
+                        <a href="<?=HOME;?>/auth/login">Login</a>
+                    </li>
+				<?php endif;?>
+            </ul>
 		</div><!--/.nav-collapse -->
 	</div><!--/.container-fluid -->
 </nav>
